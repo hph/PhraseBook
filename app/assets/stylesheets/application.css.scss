@@ -1,0 +1,16 @@
+html, body {
+  height: 100%;
+}
+
+#body {
+  margin-top: 60px;
+}
+
+.show-phrase {
+  margin-top: 20px;
+
+  .phrase-text {
+    font-weight: bold;
+    font-size: 24px;
+  }
+}

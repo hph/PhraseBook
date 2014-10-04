@@ -1,0 +1,30 @@
+# RVM config
+.rvmrc
+
+# Vendor assets should never be committed
+vendor/assets/javascripts/*.js
+vendor/assets/stylesheets/*.css
+
+# Log files
+log/
+
+# Precompiled assets
+public/assets/
+
+# Uploaded images (in development)
+public/system/
+
+# Temporary files
+tmp/
+
+# Bundler config
+.bundle/
+
+# Vagrant config
+.vagrant/
+
+# Mac directory attributes file
+.DS_Store
+
+# VIM backup files
+*~

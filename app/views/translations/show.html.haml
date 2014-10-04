@@ -1,0 +1,38 @@
+.row
+  .col-sm-offset-3.col-sm-6.show-phrase
+    .list-group
+      %a.list-group-item.active{href: show_translation_path(@phrase.id)}
+        %h4.list-group-item-heading= @phrase.text
+        %p.list-group-item-text
+          %span{class: "flag-icon flag-icon-#{@phrase.language}"}
+      - @translations.each do |translation|
+        %a.list-group-item{href: show_translation_path(translation.id)}
+          %h4.list-group-item-heading= translation.text
+          %p.list-group-item-text
+            %span{class: "flag-icon flag-icon-#{translation.language}"}
+    - if @translations.empty?
+      .alert.alert-dismissable.alert-info
+        %button.close(type='button' data-dismiss='alert') ×
+        %strong Heads up!
+        %p There are no translations for this phrase. Please add one.
+    - else 
+    - if user_signed_in?
+      %p Please add more translations for this phrase.
+      %form(action='/create' method='POST')
+        = hidden_field_tag :authenticity_token, form_authenticity_token
+        = hidden_field_tag :phrase_id, @phrase.phrase_id
+        .form-group
+          %label Translation
+          %input.form-control(type='text' name='phrase' placeholder='Translation' autofocus)
+        .form-group
+          %label Language
+          %select.form-control(name='language')
+            %option(selected disabled) < Select one >
+            %option(value='br') Brazilian Portuguese
+            %option(value='gb') English
+            %option(value='is') Icelandic
+            %option(value='es') Spanish
+        .form-group
+          %button.btn.btn-success(type='submit') Submit
+    - else
+      %p Please #{link_to 'log in', new_user_session_path} to add translations.

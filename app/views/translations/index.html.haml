@@ -1,0 +1,17 @@
+.row
+  .col-sm-offset-3.col-sm-6
+    %h1 Phrases
+    - if @translations.empty?
+      .alert.alert-dismissable.alert-info
+        %button.close(type='button' data-dismiss='alert') ×
+        %strong Heads up!
+        %p There are currently no phrases in the database!
+        %br
+        %a.btn.btn-primary{href: new_path} New phrase
+    - else
+      .list-group
+        - @translations.each do |translation|
+          %a.list-group-item{href: show_translation_path(translation.id)}
+            %h4.list-group-item-heading= translation.text
+            %p.list-group-item-text
+              %span{class: "flag-icon flag-icon-#{translation.language}"}
